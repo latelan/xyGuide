@@ -4,22 +4,21 @@ package com.late.xyindoor;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.amap.api.maps2d.AMap;
-import com.amap.api.maps2d.AMap.OnCameraChangeListener;
-import com.amap.api.maps2d.AMap.OnInfoWindowClickListener;
-import com.amap.api.maps2d.AMap.OnMapLoadedListener;
-import com.amap.api.maps2d.AMap.OnMapTouchListener;
-import com.amap.api.maps2d.AMap.OnMarkerClickListener;
-import com.amap.api.maps2d.CameraUpdateFactory;
-import com.amap.api.maps2d.MapFragment;
-import com.amap.api.maps2d.MapView;
-import com.amap.api.maps2d.model.BitmapDescriptorFactory;
-import com.amap.api.maps2d.model.CameraPosition;
-import com.amap.api.maps2d.model.GroundOverlay;
-import com.amap.api.maps2d.model.LatLng;
-import com.amap.api.maps2d.model.LatLngBounds;
-import com.amap.api.maps2d.model.Marker;
-import com.amap.api.maps2d.model.MarkerOptions;
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.AMap.OnCameraChangeListener;
+import com.amap.api.maps.AMap.OnInfoWindowClickListener;
+import com.amap.api.maps.AMap.OnMapLoadedListener;
+import com.amap.api.maps.AMap.OnMarkerClickListener;
+import com.amap.api.maps.CameraUpdateFactory;
+import com.amap.api.maps.MapView;
+import com.amap.api.maps.UiSettings;
+import com.amap.api.maps.model.BitmapDescriptorFactory;
+import com.amap.api.maps.model.CameraPosition;
+import com.amap.api.maps.model.GroundOverlay;
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.LatLngBounds;
+import com.amap.api.maps.model.Marker;
+import com.amap.api.maps.model.MarkerOptions;
 import com.late.xyindoor.R;
 
 import android.content.Intent;
@@ -35,13 +34,15 @@ import android.view.ViewGroup;
  * @author abel
  */
 public class AMapFragment extends Fragment implements OnMapLoadedListener,
-			OnMarkerClickListener,OnInfoWindowClickListener{
+			OnMarkerClickListener,OnInfoWindowClickListener,OnCameraChangeListener{
 	
 	private MapView mapView;
 	private AMap aMap;
 	private View mapLayout;
 	private GroundOverlay groundoverlay;
+	private UiSettings mUiSettings;
 	private List<Marker> markerList = new ArrayList<Marker>();
+	private List<Marker> screenMarkerList;
 	private Marker marker_dongqu;
 	private MarkerOptions markerOption;
 	
@@ -71,9 +72,12 @@ public class AMapFragment extends Fragment implements OnMapLoadedListener,
 		      mapView.onCreate(savedInstanceState);
 		      if (aMap == null) {
 		        aMap = mapView.getMap();
-		        
+		        mUiSettings = aMap.getUiSettings();
+		        mUiSettings.setCompassEnabled(true); //设置指南针
+
 		        addMarkersToMap();
 		        initMapListener();
+		        
 		      }
 		    }else {
 		      if (mapLayout.getParent() != null) {
@@ -90,6 +94,7 @@ public class AMapFragment extends Fragment implements OnMapLoadedListener,
 		aMap.setOnMapLoadedListener(this);
 		aMap.setOnMarkerClickListener(this);
 		aMap.setOnInfoWindowClickListener(this);
+		aMap.setOnCameraChangeListener(this);
 	}
 	
 	/**
@@ -179,12 +184,16 @@ public class AMapFragment extends Fragment implements OnMapLoadedListener,
 		// TODO Auto-generated method stub
 	
 		LatLngBounds.Builder aBuilder = new LatLngBounds.Builder();
-		for(int i=0; i<markerList.size(); i++){
-			aBuilder.include(markerList.get(i).getPosition());
-		}
+//		for(int i=0; i<markerList.size(); i++){
+//			aBuilder.include(markerList.get(i).getPosition());
+//		}
+		aBuilder.include(latlng_leftdown)
+				.include(latlng_leftup)
+				.include(latlng_rightdown)
+				.include(latlng_rightup);
 		
 		LatLngBounds bounds = aBuilder.build();
-		aMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 10));
+		aMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 10));
 	}
 
 	@Override
@@ -211,6 +220,28 @@ public class AMapFragment extends Fragment implements OnMapLoadedListener,
 				
 //				Toast.makeText(getActivity(), "Click", Toast.LENGTH_LONG).show();
 			}
+		}
+	}
+
+	@Override
+	public void onCameraChange(CameraPosition arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onCameraChangeFinish(CameraPosition arg0) {
+		// TODO Auto-generated method stub
+		boolean hasFlag = false;
+		screenMarkerList = aMap.getMapScreenMarkers();
+		for(int i=0; i<screenMarkerList.size(); i++){
+			if(markerList.contains(screenMarkerList.get(i)) == true){
+				hasFlag = true;
+				break;
+			}
+		}
+		if(hasFlag == false){
+			onMapLoaded();
 		}
 	}
 }
