@@ -3,6 +3,7 @@ package com.late.xyindoor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,8 +14,10 @@ import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.ViewConfiguration;
 import android.view.Window;
+import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
 
@@ -168,4 +171,21 @@ public class MainActivity extends FragmentActivity {
 		}
 	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		switch(item.getItemId()){
+		case R.id.action_about:
+			Intent intent = new Intent(this, AboutActivity.class);
+			intent.putExtra("title", "about");
+			this.startActivity(intent);
+			break;
+		case R.id.action_settings:
+			break;
+		default:
+			break;
+		}
+		
+		return super.onOptionsItemSelected(item);
+	}
 }

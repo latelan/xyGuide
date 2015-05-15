@@ -109,6 +109,7 @@ containing a value of this type.
     }
     public static final class color {
         public static final int background_tab_pressed=0x7f040000;
+        public static final int copyright_font=0x7f040001;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -132,30 +133,34 @@ containing a value of this type.
         public static final int background_tab=0x7f020007;
         public static final int ic_launcher=0x7f020008;
         public static final int logo=0x7f020009;
-        public static final int ofm_add_icon=0x7f02000a;
-        public static final int ofm_camera_icon=0x7f02000b;
-        public static final int ofm_card_icon=0x7f02000c;
-        public static final int ofm_collect_icon=0x7f02000d;
-        public static final int ofm_feedback_icon=0x7f02000e;
-        public static final int ofm_group_chat_icon=0x7f02000f;
-        public static final int ofm_photo_icon=0x7f020010;
-        public static final int ofm_qrcode_icon=0x7f020011;
-        public static final int ofm_setting_icon=0x7f020012;
-        public static final int ofm_video_icon=0x7f020013;
+        public static final int logo_about=0x7f02000a;
+        public static final int ofm_add_icon=0x7f02000b;
+        public static final int ofm_camera_icon=0x7f02000c;
+        public static final int ofm_card_icon=0x7f02000d;
+        public static final int ofm_collect_icon=0x7f02000e;
+        public static final int ofm_feedback_icon=0x7f02000f;
+        public static final int ofm_group_chat_icon=0x7f020010;
+        public static final int ofm_photo_icon=0x7f020011;
+        public static final int ofm_qrcode_icon=0x7f020012;
+        public static final int ofm_setting_icon=0x7f020013;
+        public static final int ofm_video_icon=0x7f020014;
     }
     public static final class id {
-        public static final int action_about=0x7f090005;
-        public static final int action_settings=0x7f090004;
-        public static final int button1=0x7f090000;
-        public static final int map=0x7f090003;
-        public static final int pager=0x7f090002;
-        public static final int tabs=0x7f090001;
+        public static final int action_about=0x7f090007;
+        public static final int action_settings=0x7f090006;
+        public static final int button1=0x7f090002;
+        public static final int copyright_info=0x7f090001;
+        public static final int map=0x7f090005;
+        public static final int pager=0x7f090004;
+        public static final int tabs=0x7f090003;
+        public static final int version_tips=0x7f090000;
     }
     public static final class layout {
-        public static final int activity_indoor=0x7f030000;
-        public static final int activity_main=0x7f030001;
-        public static final int fragment_main=0x7f030002;
-        public static final int fraqment_map=0x7f030003;
+        public static final int activity_about=0x7f030000;
+        public static final int activity_indoor=0x7f030001;
+        public static final int activity_main=0x7f030002;
+        public static final int fragment_main=0x7f030003;
+        public static final int fraqment_map=0x7f030004;
     }
     public static final class menu {
         public static final int main=0x7f080000;
@@ -170,6 +175,7 @@ containing a value of this type.
         public static final int action_search=0x7f060001;
         public static final int action_settings=0x7f060006;
         public static final int app_name=0x7f060000;
+        public static final int copyright_string=0x7f06000e;
         public static final int plus_add_friend=0x7f060009;
         public static final int plus_group_chat=0x7f060008;
         public static final int plus_scan=0x7f06000b;

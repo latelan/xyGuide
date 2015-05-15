@@ -45,6 +45,7 @@ public class AMapFragment extends Fragment implements OnMapLoadedListener,
 	private List<Marker> screenMarkerList;
 	private Marker marker_dongqu;
 	private MarkerOptions markerOption;
+	private LatLngBounds mBounds;
 	
 	// 学校范围
 	private LatLng latlng_leftup = new LatLng(34.157711, 108.898178);
@@ -53,9 +54,9 @@ public class AMapFragment extends Fragment implements OnMapLoadedListener,
 	private LatLng latlng_rightdown = new LatLng(34.148664, 108.908853);
 	private LatLng latlng_center = new LatLng(108.903703,34.153521);
 	
-	private LatLng latlng_depart_1 = new LatLng(34.154897, 108.900495);   // 1号楼
-	private LatLng latlng_depart_2 = new LatLng(34.15424, 108.900077);   // 2号楼
-	private LatLng latlng_depart_3 = new LatLng(34.153641, 108.89975);    // 3好楼
+	private LatLng latlng_depart_1 = new LatLng(34.154897, 108.900495);   	// 1号楼
+	private LatLng latlng_depart_2 = new LatLng(34.15424, 108.900077);   	// 2号楼
+	private LatLng latlng_depart_3 = new LatLng(34.153641, 108.89975);    	// 3好楼
 	private LatLng latlng_depart_library = new LatLng(34.153414, 108.901144); // 图书馆
 	private LatLng latlng_depart_meiguang = new LatLng(34.15206, 108.898505); // 美食广场
 	private LatLng latlng_depart_xuriyuan = new LatLng(34.150147, 108.900227);// 旭日苑 
@@ -192,15 +193,14 @@ public class AMapFragment extends Fragment implements OnMapLoadedListener,
 				.include(latlng_rightdown)
 				.include(latlng_rightup);
 		
-		LatLngBounds bounds = aBuilder.build();
-		aMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 10));
+		mBounds = aBuilder.build();
+		aMap.animateCamera(CameraUpdateFactory.newLatLngBounds(mBounds, 10));
 	}
 
 	@Override
 	public boolean onMarkerClick(final Marker marker) {
 		// TODO Auto-generated method stub
 //		float mZoom = aMap.getCameraPosition().zoom;
-//		
 //		Toast.makeText(getActivity(), String.valueOf(mZoom), Toast.LENGTH_LONG).show();
 		return false;
 	}
@@ -232,15 +232,22 @@ public class AMapFragment extends Fragment implements OnMapLoadedListener,
 	@Override
 	public void onCameraChangeFinish(CameraPosition arg0) {
 		// TODO Auto-generated method stub
-		boolean hasFlag = false;
-		screenMarkerList = aMap.getMapScreenMarkers();
-		for(int i=0; i<screenMarkerList.size(); i++){
-			if(markerList.contains(screenMarkerList.get(i)) == true){
-				hasFlag = true;
-				break;
-			}
-		}
-		if(hasFlag == false){
+		// 两种方法限制地图区域
+		// 方法一：判断屏幕中有木marker，若没有，则移到指定区域
+//		boolean hasFlag = false;
+//		screenMarkerList = aMap.getMapScreenMarkers();
+//		for(int i=0; i<screenMarkerList.size(); i++){
+//			if(markerList.contains(screenMarkerList.get(i)) == true){
+//				hasFlag = true;
+//				break;
+//			}
+//		}
+//		if(hasFlag == false){
+//			onMapLoaded();
+//		}
+		// 方法二：检查当前可视区域中心点是否在指定区域，若没有，则移动到指定可视区域
+		CameraPosition cameraPosition = aMap.getCameraPosition();
+		if(mBounds.contains(cameraPosition.target) == false) {
 			onMapLoaded();
 		}
 	}

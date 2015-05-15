@@ -15,5 +15,6 @@
     <string name="plus_scan">扫一扫</string>
     <string name="plus_take_photo">拍照分享</string>
     <string name="action_about">关于</string>
+    <string name="copyright_string">Copyright © 2015 XiYouLinuxer.</string>
 
 </resources>

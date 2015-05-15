@@ -33,8 +33,13 @@
         <activity 
             android:name=".IndoorActivity"
             android:label="室内平面图"
-            android:logo="@drawable/actionbar_back_icon"
-            >
+            android:logo="@drawable/actionbar_back_icon">
+        </activity>
+
+        <activity
+            android:name=".AboutActivity"
+            android:label="关于"
+            android:logo="@drawable/actionbar_back_icon">
         </activity>
             
         <activity
