@@ -138,7 +138,7 @@ public class AMapFragment extends Fragment implements OnMapLoadedListener,
 		markerList.add(aMap.addMarker(markerOption));
 	}
 	
-	@Override
+	  @Override
 	  public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    

@@ -4,17 +4,22 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 public class IndoorActivity extends Activity {
 
+	private ImageView indoorMap;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_indoor);
 		ActionBar actionBar = getActionBar();
-//		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setHomeButtonEnabled(true);
+		
+		indoorMap = (ImageView)findViewById(R.id.indoor_map);
+		indoorMap.setImageResource(R.drawable.indoor_dongqu);
 	}
 
 	@Override

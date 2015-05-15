@@ -38,7 +38,7 @@ public class MainActivity extends FragmentActivity {
 	/**
 	 * 信息采集界面的Fragment
 	 */
-	private FoundFragment foundFragment;
+	private BuildFragment buildFragment;
 
 //	/**
 //	 * 通讯录界面的Fragment
@@ -121,10 +121,10 @@ public class MainActivity extends FragmentActivity {
 				}
 				return aMapFragment;
 			case 1:
-				if (foundFragment == null) {
-					foundFragment = new FoundFragment();
+				if (buildFragment == null) {
+					buildFragment = new BuildFragment();
 				}
-				return foundFragment;
+				return buildFragment;
 //			case 2:
 //				if (contactsFragment == null) {
 //					contactsFragment = new ContactsFragment();
