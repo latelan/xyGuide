@@ -4,9 +4,11 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 
-public class IndoorActivity extends Activity {
+public class IndoorActivity extends Activity implements OnClickListener {
 
 	private ImageView indoorMap;
 	
@@ -20,6 +22,7 @@ public class IndoorActivity extends Activity {
 		
 		indoorMap = (ImageView)findViewById(R.id.indoor_map);
 		indoorMap.setImageResource(R.drawable.indoor_dongqu);
+		indoorMap.setOnClickListener(this);
 	}
 
 	@Override
@@ -34,6 +37,12 @@ public class IndoorActivity extends Activity {
 		}
 		
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onClick(View arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
