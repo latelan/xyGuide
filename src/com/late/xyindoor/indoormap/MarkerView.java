@@ -14,6 +14,11 @@ public class MarkerView extends View {
 
 	private float currentX = 0;
 	private float currentY = 0;
+	
+	// marker 在IndoorMapView中的坐标
+	private float inMapX;		
+	private float inMapY;
+	
 	private Paint p = new Paint();
 	
 	public MarkerView(Context context, AttributeSet attrs) {
@@ -30,16 +35,15 @@ public class MarkerView extends View {
 		canvas.drawCircle(currentX, currentY, 15, p);
 	}
 
-	@Override
-	public boolean onTouchEvent(MotionEvent event) {
-		// TODO Auto-generated method stub
-		this.currentX = event.getX();
-		this.currentY = event.getY();
-		
-		this.invalidate();
-		
-		return true;
-	}
+//	public boolean onTouchEvent(MotionEvent event) {
+//		// TODO Auto-generated method stub
+//		this.currentX = event.getX();
+//		this.currentY = event.getY();
+//		
+//		this.invalidate();
+//		
+//		return true;
+//	}
 
 	@Override
 	public float getX() {
@@ -56,5 +60,18 @@ public class MarkerView extends View {
 	public void setXY(float x, float y) {
 		this.currentX = x;
 		this.currentY = y;
+	}
+	
+	public float getInMapX() {
+		return this.inMapX;
+	}
+	
+	public float getInMapY() {
+		return this.inMapY;
+	}
+	
+	public void setInMapXY(float x, float y) {
+		this.inMapX = x;
+		this.inMapY = y;
 	}
 }

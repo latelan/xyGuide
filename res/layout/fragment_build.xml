@@ -3,12 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <ImageView
-        android:id="@+id/indoor_build_map"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:scaleType="fitCenter" />
+        android:orientation="vertical" >
+
+        <com.late.xyindoor.indoormap.IndoorMapView
+            android:id="@+id/indoor_build_map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter" />
+    </LinearLayout>
 
     <com.late.xyindoor.indoormap.MarkerView
         android:id="@+id/marker"
@@ -35,5 +40,10 @@
             android:layout_weight="1"
             android:text="停止采集" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>
