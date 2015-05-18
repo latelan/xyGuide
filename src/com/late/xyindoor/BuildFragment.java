@@ -89,7 +89,7 @@ public class BuildFragment extends Fragment {
 			Intent intent = new Intent(getActivity(), SniffeActivity.class);
 			intent.putExtras(data);
 			
-			startActivity(intent);
+			//startActivity(intent);
 		}
 	};
 }

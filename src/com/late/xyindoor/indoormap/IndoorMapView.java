@@ -1,16 +1,16 @@
 package com.late.xyindoor.indoormap;
 
 import android.content.Context;
-import android.location.Location;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
 public class IndoorMapView extends ImageView {
 
-	private float imageViewStartX = this.getX();
-	private float imageViewStartY = this.getY();
+	private int imageStartX;
+	private int imageStartY;
+	private int imageWidth;
+	private int imageHeight;
 
 	private MarkerView marker;
 
@@ -35,10 +35,25 @@ public class IndoorMapView extends ImageView {
 		// return super.onTouchEvent(event);
 		// Log.d("imageView Location", String.valueOf(this.getX()) +", " +
 		// String.valueOf(this.getY()));
-		marker.setXY(event.getX(), event.getY());
+		if (!(event.getX() > this.getLeft() && event.getX() < this.getRight()
+				&& event.getY() > this.getTop()
+				&& event.getY() < this.getBottom())) {
+			return super.onTouchEvent(event);
+		}
+			marker.setXY(event.getX(), event.getY());
 		marker.invalidate();
-		marker.setInMapXY(event.getX() - imageViewStartX, event.getY()
-				- imageViewStartY);
+		//
+		imageStartX = this.getDrawable().getBounds().left;
+		imageStartY = this.getDrawable().getBounds().top;
+		imageWidth = this.getDrawable().getBounds().width();
+		imageHeight = this.getDrawable().getBounds().height();
+
+		float x = (float) (Math
+				.round(((event.getX() - imageStartX) / imageWidth) * 10000.0) / 10000.0);
+		float y = (float) (Math
+				.round(((event.getY() - imageStartY) / imageHeight) * 10000.0) / 10000.0);
+
+		marker.setInMapXY(x, y);
 
 		return true;
 	}
