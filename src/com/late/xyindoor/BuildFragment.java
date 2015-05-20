@@ -2,6 +2,7 @@ package com.late.xyindoor;
 
 import com.late.xyindoor.indoormap.IndoorMapView;
 import com.late.xyindoor.indoormap.MarkerView;
+import com.late.xyindoor.util.HttpRequest;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,7 +24,7 @@ import android.widget.Toast;
  * 
  * @author abel
  */
-public class BuildFragment extends Fragment {
+public class BuildFragment extends Fragment implements OnTouchListener {
 
 	private View buildLayout;
 	// private ImageView indoorImage;
@@ -31,10 +32,8 @@ public class BuildFragment extends Fragment {
 	private MarkerView markerView;
 	private Button btnStartSniffe;
 
-	private float ImageViewX;
-	private float ImageViewY;
+	private TextView text;
 
-	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -55,8 +54,10 @@ public class BuildFragment extends Fragment {
 
 			indoorImage.setImageResource(R.drawable.indoor_dongqu);
 			indoorImage.addMarker(markerView);
-			
 
+			text = (TextView) buildLayout.findViewById(R.id.location);
+			text.setText(String.valueOf(indoorImage.getX())
+					+ indoorImage.getY());
 		} else {
 			if (buildLayout.getParent() != null) {
 				((ViewGroup) buildLayout.getParent()).removeView(buildLayout);
@@ -76,20 +77,46 @@ public class BuildFragment extends Fragment {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			final TextView text = (TextView) buildLayout
-					.findViewById(R.id.location);
+			// final TextView text = (TextView) buildLayout
+			// .findViewById(R.id.location);
 			text.setText(String.valueOf(markerView.getInMapX()) + ", "
-					+ String.valueOf(markerView.getInMapY()));
+					+ String.valueOf(markerView.getInMapY()) + "  image:");
+
+			text.setText(String.valueOf(indoorImage.getWidth()) + ", "
+					+ indoorImage.getHeight() + ", xy: "
+					+ markerView.getInMapX() + ", " + markerView.getInMapY()
+					+ ", touch: " + markerView.getX() + ", "
+					+ markerView.getY());
+
 			
-			//进入采集信息页面
-			Bundle data = new Bundle();
-			data.putFloat("MarkerPosX", markerView.getInMapX());
-			data.putFloat("MarkerPosY", markerView.getInMapY());
+
 			
+			// text.setText(String.valueOf(markerView) + ", "
+			// + String.valueOf(markerView.getInMapY()) + "  image:"
+			// + indoorImage.getImageStartX() + ",  "
+			// + indoorImage.getImageStartY());
+
+			// 进入采集信息页面
+
 			Intent intent = new Intent(getActivity(), SniffeActivity.class);
-			intent.putExtras(data);
-			
-			//startActivity(intent);
+			intent.putExtra("buildingId", "building_east_1");
+			intent.putExtra("floor", "F1");
+			intent.putExtra("x", markerView.getInMapX());
+			intent.putExtra("y", markerView.getInMapY());
+
+			startActivity(intent);
 		}
 	};
+
+	@Override
+	public boolean onTouch(View arg0, MotionEvent event) {
+		// TODO Auto-generated method stub
+		// return false;
+		// final TextView text = (TextView) buildLayout
+		// .findViewById(R.id.location);
+
+		// text.setText(String.valueOf(event.getX()) + ",  " + event.getY());
+
+		return true;
+	}
 }

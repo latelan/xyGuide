@@ -17,4 +17,7 @@
     <string name="action_about">关于</string>
     <string name="copyright_string">Copyright © 2015 XiYouLinuxer.</string>
 
+    
+    <string name="server_info_collect">http://xyguide.sinaapp.com/get_post.php</string>
+    <string name="server_location">http://xyguide.sinaapp.com/location.php</string>
 </resources>

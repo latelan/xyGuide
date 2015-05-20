@@ -12,12 +12,13 @@ import android.widget.ImageView;
 
 public class MarkerView extends View {
 
+	// marker 坐标
 	private float currentX = 0;
 	private float currentY = 0;
 	
-	// marker 在IndoorMapView中的坐标
-	private float inMapX;		
-	private float inMapY;
+	// marker 在IndoorMapView中的相对坐标,0-1，保留四位小数
+	private String inMapX;		
+	private String inMapY;
 	
 	private Paint p = new Paint();
 	
@@ -62,15 +63,15 @@ public class MarkerView extends View {
 		this.currentY = y;
 	}
 	
-	public float getInMapX() {
+	public String getInMapX() {
 		return this.inMapX;
 	}
 	
-	public float getInMapY() {
+	public String getInMapY() {
 		return this.inMapY;
 	}
 	
-	public void setInMapXY(float x, float y) {
+	public void setInMapXY(String x, String y) {
 		this.inMapX = x;
 		this.inMapY = y;
 	}

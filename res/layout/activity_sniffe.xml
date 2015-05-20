@@ -3,9 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center_horizontal"
-    android:orientation="vertical" 
-    android:background="@color/background_sniffe_activity">
+    android:background="@color/background_sniffe_activity"
+    android:orientation="vertical" >
 
+    <TextView
+        android:id="@+id/tips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:textColor="@android:color/white"/>
+    
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,15 +23,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="30dp"
-            android:textSize="18sp"
+            android:text="信息采集中，请停留一段时间"
             android:textColor="@android:color/white"
-            android:text="信息采集中，请勿保持该姿势一段时间" />
+            android:layout_weight="0.5"
+            android:textSize="18sp" />
 
-        <ProgressBar 
+        <ProgressBar
             android:id="@+id/sniffe_progress"
-            style="@android:style/Widget.ProgressBar.Horizontal"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_weight="1"
             android:layout_width="200dp"
-            android:layout_height="10dp"/>
+            android:layout_height="15dp" />
     </LinearLayout>
 
 </LinearLayout>
