@@ -18,6 +18,6 @@
     <string name="copyright_string">Copyright © 2015 XiYouLinuxer.</string>
 
     
-    <string name="server_info_collect">http://xyguide.sinaapp.com/get_post.php</string>
+    <string name="server_info_collect">http://121.40.95.120/get_post.php</string>
     <string name="server_location">http://xyguide.sinaapp.com/location.php</string>
 </resources>

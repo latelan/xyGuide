@@ -79,9 +79,9 @@ public class WifiSniffer {
 					
 					finger.setRSSIS(map);
 					finger.setTimestamp(scanTimestamp);
-					Log.d("finger", finger.getJsonString());
+//					Log.d("finger", finger.getJsonString());
 
-					if(op == 1){
+					if(op == 1){ // 采集信息
 						url = context.getResources().getString(R.string.server_info_collect);
 						sender.postRequest(url, finger.getJsonString());
 						i++;
@@ -90,7 +90,7 @@ public class WifiSniffer {
 						msg.arg1 = i;
 						mHandler.sendMessage(msg);
 						
-					} else {
+					} else { // 请求定位
 						
 					}
 					//sender.postRequest(collect_url, finger.getJsonString());

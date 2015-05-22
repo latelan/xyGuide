@@ -56,8 +56,8 @@ public class BuildFragment extends Fragment implements OnTouchListener {
 			indoorImage.addMarker(markerView);
 
 			text = (TextView) buildLayout.findViewById(R.id.location);
-			text.setText(String.valueOf(indoorImage.getX())
-					+ indoorImage.getY());
+			indoorImage.setTextView(text);
+			
 		} else {
 			if (buildLayout.getParent() != null) {
 				((ViewGroup) buildLayout.getParent()).removeView(buildLayout);
@@ -79,16 +79,14 @@ public class BuildFragment extends Fragment implements OnTouchListener {
 			// TODO Auto-generated method stub
 			// final TextView text = (TextView) buildLayout
 			// .findViewById(R.id.location);
-			text.setText(String.valueOf(markerView.getInMapX()) + ", "
-					+ String.valueOf(markerView.getInMapY()) + "  image:");
-
-			text.setText(String.valueOf(indoorImage.getWidth()) + ", "
-					+ indoorImage.getHeight() + ", xy: "
-					+ markerView.getInMapX() + ", " + markerView.getInMapY()
-					+ ", touch: " + markerView.getX() + ", "
-					+ markerView.getY());
-
-			
+//			text.setText(String.valueOf(markerView.getInMapX()) + ", "
+//					+ String.valueOf(markerView.getInMapY()) + "  image:");
+//
+//			text.setText(String.valueOf(indoorImage.getWidth()) + ", "
+//					+ indoorImage.getHeight() + ", xy: "
+//					+ markerView.getInMapX() + ", " + markerView.getInMapY()
+//					+ ", touch: " + markerView.getX() + ", "
+//					+ markerView.getY());
 
 			
 			// text.setText(String.valueOf(markerView) + ", "
@@ -115,7 +113,7 @@ public class BuildFragment extends Fragment implements OnTouchListener {
 		// final TextView text = (TextView) buildLayout
 		// .findViewById(R.id.location);
 
-		// text.setText(String.valueOf(event.getX()) + ",  " + event.getY());
+		text.setText(markerView.getInMapX()+ ",  " + markerView.getInMapY());
 
 		return true;
 	}

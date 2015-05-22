@@ -63,7 +63,7 @@ public class SniffeActivity extends Activity implements Runnable{
 		String y = intent.getStringExtra("y");
 
 		finger = new Finger(buildingId, floor, x, y);
-		Log.d("url", url);
+//		Log.d("url", url);
 		//SniffeWorker();
 		
 //		Thread thread = new Thread(this);
@@ -149,7 +149,8 @@ public class SniffeActivity extends Activity implements Runnable{
 				progressSniffe.setProgress(progress);
 //				Toast.makeText(context,String.valueOf(progress) + progressSniffe.getMax(), Toast.LENGTH_LONG).show();
 				if(progress == MaxSniffe){
-					Toast.makeText(context,"采集完毕", Toast.LENGTH_LONG).show();
+					finish();
+					Toast.makeText(context,"采集完毕", Toast.LENGTH_SHORT).show();
 				}
 			}
 		}

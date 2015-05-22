@@ -1,9 +1,12 @@
 package com.late.xyindoor.indoormap;
 
+import java.text.DecimalFormat;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class IndoorMapView extends ImageView {
 
@@ -11,7 +14,8 @@ public class IndoorMapView extends ImageView {
 	private int imageHeight;
 
 	private MarkerView marker;
-
+	private TextView text;
+	
 	public IndoorMapView(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
@@ -40,6 +44,8 @@ public class IndoorMapView extends ImageView {
 		}
 		marker.setXY(event.getX(), event.getY());
 		marker.invalidate();
+		
+		
 
 		// imageWidth = this.getDrawable().getBounds().width();
 		// imageHeight = this.getDrawable().getBounds().height();
@@ -50,8 +56,12 @@ public class IndoorMapView extends ImageView {
 		float x = (float) (Math.round((event.getX() / imageWidth) * 10000.0) / 10000.0);
 		float y = (float) (Math.round((event.getY() / imageHeight) * 10000.0) / 10000.0);
 
-		marker.setInMapXY(String.valueOf(x), String.valueOf(y));
+		DecimalFormat df = new DecimalFormat("0.0000");
+		
+		marker.setInMapXY(df.format(x), df.format(y));
 
+		text.setText(marker.getInMapX() + ", " + marker.getInMapY());
+		
 		return true;
 	}
 
@@ -59,4 +69,7 @@ public class IndoorMapView extends ImageView {
 		this.marker = marker;
 	}
 
+	public void setTextView(TextView text){
+		this.text = text;
+	}
 }
