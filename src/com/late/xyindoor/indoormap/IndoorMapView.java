@@ -71,5 +71,6 @@ public class IndoorMapView extends ImageView {
 
 	public void setTextView(TextView text){
 		this.text = text;
-	}
+	} 
 }
+

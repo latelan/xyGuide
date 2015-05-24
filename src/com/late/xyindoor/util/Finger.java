@@ -45,7 +45,33 @@ public class Finger {
 		JSONArray jsonRssiArray = new JSONArray();
 
 		try {
-			jsonObj.put("postion", new JSONArray().put(x).put(y));
+			jsonObj.put("position", new JSONArray().put(x).put(y));
+			jsonObj.put("buildingId", buildingId);
+			jsonObj.put("floor", floor);
+			jsonObj.put("timestamp", timestamp);
+			jsonObj.put("direction", direction);
+			for (String key : rssis.keySet()) {
+				JSONObject jsonRssiObj = new JSONObject();
+				jsonRssiObj.put("mac", key).put("rssi", rssis.get(key));
+	
+				jsonRssiArray.put(jsonRssiObj);
+			}
+			jsonObj.put("rssis", jsonRssiArray);
+
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+			return "";
+		}
+
+		return jsonObj.toString();
+	}
+	
+	public String getLocationJsonString() {
+		JSONObject jsonObj = new JSONObject();
+		JSONArray jsonRssiArray = new JSONArray();
+
+		try {
 			jsonObj.put("buildingId", buildingId);
 			jsonObj.put("floor", floor);
 			jsonObj.put("timestamp", timestamp);

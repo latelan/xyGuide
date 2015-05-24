@@ -22,6 +22,10 @@ public class MarkerView extends View {
 	
 	private Paint p = new Paint();
 	
+	public MarkerView(Context context){
+		super(context);
+	}
+	
 	public MarkerView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		// TODO Auto-generated constructor stub

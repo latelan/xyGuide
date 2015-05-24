@@ -27,6 +27,7 @@ public class WifiSniffer {
 	private WifiManager wm;
 	private BroadcastReceiver wifiReceiver;
 	private Handler mHandler;
+	private Handler myHandler;
 	private Context context;
 	private boolean running = false;
 	
@@ -40,6 +41,7 @@ public class WifiSniffer {
 	private String url;
 	private int cnt; // 采集多少次
 	private int i;   // 计数器
+	private String reqLocationData;
 	
 	public boolean isSendRunning() {
 		return sendRunning;
@@ -48,6 +50,7 @@ public class WifiSniffer {
 	public WifiSniffer(Context ctx, Handler handler) {
 		context = ctx;
 		mHandler = handler;
+		myHandler = new Handler();
 		sender = new HttpRequest();
 		wm = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
 		wifiReceiver = new BroadcastReceiver() {
@@ -56,6 +59,7 @@ public class WifiSniffer {
 			public void onReceive(Context context, Intent intent) {
 				
 				if(i>=cnt){
+					i = 0;
 					return ;
 				}
 				results = wm.getScanResults();
@@ -69,10 +73,10 @@ public class WifiSniffer {
 				
 				try {
 					map = new HashMap<String, Integer>();
-					int cnt = 0;
+					int num = 0;
 					for(int i=0; i<results.size(); i++){
 						map.put(results.get(i).BSSID, results.get(i).level);
-						if(++cnt >= 8){
+						if(++num >= 8){
 							break;
 						}
 					}
@@ -83,7 +87,7 @@ public class WifiSniffer {
 
 					if(op == 1){ // 采集信息
 						url = context.getResources().getString(R.string.server_info_collect);
-						sender.postRequest(url, finger.getJsonString());
+						sender.postRequest(url, finger.getJsonString(), mHandler);
 						i++;
 						Message msg = mHandler.obtainMessage();
 						msg.what = 0x123;
@@ -91,6 +95,14 @@ public class WifiSniffer {
 						mHandler.sendMessage(msg);
 						
 					} else { // 请求定位
+						if(++i == cnt){
+							reqLocationData += finger.getLocationJsonString() + "]";
+							url = context.getResources().getString(R.string.server_location);
+							sender.postRequest(url, reqLocationData, mHandler);
+							reqLocationData = "[";
+						} else {
+							reqLocationData += finger.getLocationJsonString() +",";
+						}
 						
 					}
 					//sender.postRequest(collect_url, finger.getJsonString());
@@ -124,8 +136,11 @@ public class WifiSniffer {
 	public void Start() {
 		if(!running) {
 			context.registerReceiver(wifiReceiver, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
-			mHandler.post(new TimerProcess());
+			myHandler.post(new TimerProcess());
 			running = true;
+			
+			reqLocationData = "[";
+			i = 0;
 		}
 	}
 	
@@ -133,6 +148,9 @@ public class WifiSniffer {
 		if(running) {
 			context.unregisterReceiver(wifiReceiver);
 			running = false;
+			
+			reqLocationData = "[";
+			i = 0;
 		}
 	}
 
@@ -149,15 +167,17 @@ public class WifiSniffer {
 		this.finger = finger;
 	}
 	
-	public void setCollectUrl(String url){
-	}
-	
+		
 	/**
 	 * 设置选项，采集数据（1）还是请求定位（0）
 	 * @param op
 	 */
 	public void setOp(int op){
 		this.op = op;
+		
+		if(op == 0){
+			reqLocationData = "[";
+		}
 	}
 	
 	public void setCnt(int cnt){
