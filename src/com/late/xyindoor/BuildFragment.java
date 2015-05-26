@@ -70,7 +70,7 @@ public class BuildFragment extends Fragment implements OnTouchListener {
 					.findViewById(R.id.start_sniffe);
 			btnStartSniffe.setOnClickListener(btnStartSniffeClickListener);
 
-			indoorImage.setImageResource(R.drawable.indoor_dongqu);
+			indoorImage.setImageResource(R.drawable.building_east_flat);
 			indoorImage.addMarker(markerView);
 
 			text = (TextView) buildLayout.findViewById(R.id.location);
@@ -107,7 +107,7 @@ public class BuildFragment extends Fragment implements OnTouchListener {
 			// 进入采集信息页面
 
 			Intent intent = new Intent(getActivity(), SniffeActivity.class);
-			intent.putExtra("buildingId", "building_east_1");
+			intent.putExtra("buildingId", "building_east_0");
 			intent.putExtra("floor", "F1");
 			intent.putExtra("x", markerView.getInMapX());
 			intent.putExtra("y", markerView.getInMapY());

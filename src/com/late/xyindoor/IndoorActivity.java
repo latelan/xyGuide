@@ -39,14 +39,14 @@ public class IndoorActivity extends Activity implements OnClickListener {
 		actionBar.setHomeButtonEnabled(true);
 		
 		indoorMap = (ImageView)findViewById(R.id.indoor_map);
-		indoorMap.setImageResource(R.drawable.indoor_dongqu);
+		indoorMap.setImageResource(R.drawable.building_east_flat);
 		indoorMap.setOnClickListener(this);
 		
 		marker = (MarkerView) findViewById(R.id.marker);
 		btnLocating = (Button) findViewById(R.id.locating);
 		btnLocating.setOnClickListener(btnLocatingOnClickListener);
 		
-		finger = new Finger("building_east_1", "F1", "", "");
+		finger = new Finger("building_east_0", "F1", "", "");
 		
 		ws = new WifiSniffer(this, handler);
 		ws.setOp(0);
@@ -110,7 +110,9 @@ public class IndoorActivity extends Activity implements OnClickListener {
 	private void msgHandlerLocation(String position){
 		try {
 			JSONObject jsonObj = new JSONObject(position);
+//			Toast.makeText(this, jsonObj.toString(), Toast.LENGTH_SHORT).show();
 			if(jsonObj.getInt("code") == 0){
+			//	Toast.makeText(this, jsonObj.getJSONObject("detail").toString(), Toast.LENGTH_SHORT).show();
 				String x = jsonObj.getJSONObject("detail").getString("x");
 				String y = jsonObj.getJSONObject("detail").getString("y");
 				

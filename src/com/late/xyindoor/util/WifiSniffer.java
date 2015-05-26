@@ -97,6 +97,7 @@ public class WifiSniffer {
 					} else { // 请求定位
 						if(++i == cnt){
 							reqLocationData += finger.getLocationJsonString() + "]";
+							Log.d("location", reqLocationData);
 							url = context.getResources().getString(R.string.server_location);
 							sender.postRequest(url, reqLocationData, mHandler);
 							reqLocationData = "[";

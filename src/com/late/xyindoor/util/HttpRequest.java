@@ -31,6 +31,8 @@ public class HttpRequest {
 	public void postRequest(String url, String data, Handler handler) {
 		this.mHandler = handler;
 		AsyncHttpClient client = new AsyncHttpClient();
+		client.setTimeout(8000);
+//		client.addHeader("Content-Type", "application/x-www-form-urlencoded");
 		RequestParams params = new RequestParams();
 		params.put("content", data);
 
@@ -44,7 +46,7 @@ public class HttpRequest {
 					// 发送成功
 					
 					strResponse = new String(responseBody);
-//					Log.d("response", strResponse);
+					Log.d("response", strResponse);
 					Message msg = mHandler.obtainMessage();
 					msg.what = 0x124;
 //					JSONObject json = new JSONObject();

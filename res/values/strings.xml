@@ -19,6 +19,6 @@
 
     
     <string name="server_info_collect">http://121.40.95.120/get_post.php</string>
-    <string name="server_location">http://121.40.95.120:8888/fingerprinting.php</string>
+    <string name="server_location">http://121.40.95.120:8888/wififinger/servlet/WifiFingerprinting</string>
     <string name="server_getallpos">http://121.40.95.120/getxy.php</string>
 </resources>

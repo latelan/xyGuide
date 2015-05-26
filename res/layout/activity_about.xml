@@ -22,7 +22,7 @@
             android:id="@+id/version_tips"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="XYGuide 1.0"
+            android:text="XYGuide 2.0"
             android:textColor="@color/copyright_font"
             android:textSize="15sp" />
     </LinearLayout>

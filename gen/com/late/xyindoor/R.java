@@ -132,21 +132,22 @@ containing a value of this type.
         public static final int actionbar_more_icon=0x7f020005;
         public static final int actionbar_search_icon=0x7f020006;
         public static final int background_tab=0x7f020007;
-        public static final int close=0x7f020008;
-        public static final int ic_launcher=0x7f020009;
-        public static final int indoor_dongqu=0x7f02000a;
-        public static final int logo=0x7f02000b;
-        public static final int logo_about=0x7f02000c;
-        public static final int ofm_add_icon=0x7f02000d;
-        public static final int ofm_camera_icon=0x7f02000e;
-        public static final int ofm_card_icon=0x7f02000f;
-        public static final int ofm_collect_icon=0x7f020010;
-        public static final int ofm_feedback_icon=0x7f020011;
-        public static final int ofm_group_chat_icon=0x7f020012;
-        public static final int ofm_photo_icon=0x7f020013;
-        public static final int ofm_qrcode_icon=0x7f020014;
-        public static final int ofm_setting_icon=0x7f020015;
-        public static final int ofm_video_icon=0x7f020016;
+        public static final int building_east_flat=0x7f020008;
+        public static final int close=0x7f020009;
+        public static final int ic_launcher=0x7f02000a;
+        public static final int indoor_dongqu=0x7f02000b;
+        public static final int logo=0x7f02000c;
+        public static final int logo_about=0x7f02000d;
+        public static final int ofm_add_icon=0x7f02000e;
+        public static final int ofm_camera_icon=0x7f02000f;
+        public static final int ofm_card_icon=0x7f020010;
+        public static final int ofm_collect_icon=0x7f020011;
+        public static final int ofm_feedback_icon=0x7f020012;
+        public static final int ofm_group_chat_icon=0x7f020013;
+        public static final int ofm_photo_icon=0x7f020014;
+        public static final int ofm_qrcode_icon=0x7f020015;
+        public static final int ofm_setting_icon=0x7f020016;
+        public static final int ofm_video_icon=0x7f020017;
     }
     public static final class id {
         public static final int action_about=0x7f09000f;
