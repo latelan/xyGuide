@@ -54,7 +54,6 @@
 
 ```
 {
-	"postion":[0.2345, 0.2167],
 	"buildingId": "building_123",
 	"floor": "1"
 	"timestamp": 1432023794,

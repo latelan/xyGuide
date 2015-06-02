@@ -103,6 +103,22 @@ public class IndoorActivity extends Activity implements OnClickListener {
 		}
 	};
 
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		
+		ws.Stop();
+	}
+
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		
+		ws.Stop();
+	}
+
 	/**
 	 * 处理定位返回消息
 	 * @param position 返回的定位信息
